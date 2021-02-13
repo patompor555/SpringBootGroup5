@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Register</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/css/custom.css" charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	<style>
+    .inputtask {
+        padding: 11px;
+        font-size: 17px;
+        line-height: 16px;
+        border-radius: 5px;
+        border-color: white;
+    }
+
+    .pad {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        border: none;
+        font-size: 20px;
+        width: 130px;
+        height: 36px;
+
+    }
+    .pad1{
+        padding: 5px 0px;
+    }
+	</style>
+
+</head>
+
+
+<body>
+
+   	<center style="position: relative; top: 200px;">
+    
+	<div style="background-color: #f1f1f1!important; width: 400px; height: auto ; border-radius:30px; padding: 10px 16px 10px 16px;">
+		<h1 style="color: #000; font-size: 30px; padding: 10px 0px;">ลงทะเบียนใหม่</h1>
+		<form th:action="@{/user/singup}" th:object="${userForm}" method="POST" accept-charset="utf-8" enctype="application/x-www-formurlencoded" class="form-horizontal">
+			<!-- <input type="hidden" name="authenticityToken" value="e739540dfb2b4389d499e26e8b6dc17f665de703">  -->
+			<div class="form-group">
+				<div class="pad1 "  >
+					<input  class="form-control inputtask" th:field="*{fname}" id="fname" name="fname" required="" type="text" placeholder="ขื่อ"  style="width: 344px;">
+				</div>
+				<div class="pad1">
+					<input  class="form-control inputtask" th:field="*{lname}" id="lname" name="lname" required="" type="text" placeholder="นามสกุล"  style="width: 344px;">
+				</div>
+				<div class="pad1">
+					<input class="form-control inputtask" th:field="*{userEmail}" id="userEmail" name="userEmail" required="" type="email"  placeholder="อีเมล์" style="width: 344px;" >
+				</div>
+				<div class="pad1">
+					<input class="form-control inputtask" th:field="*{password}" id="password" name="password" required="" type="password"  placeholder="รหัสผ่าน" style="width: 344px;">
+				</div>
+				<!-- <div class="pad1">
+					<input class="form-control inputtask" th:field="*{password2}" id="password2" name="password2" required="" type="password"  placeholder="ยืนยันรหัสผ่าน" style="width: 344px;">
+					<span th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}" class="help-block">error!</span>
+				</div> -->
+			</div>
+			<div class="form-group">
+				<div style=" margin-top: 10px; margin-bottom: 10px;">
+					<button class="pad" type="submit" style="background-color: #0b5ed7; color: #fff; ">
+						ยืนยัน
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+   </center>
+
+</body>
+	<script type="text/javascript" language="javascript" charset="_charset" src="/js/jquery-1.12.2.min.js"></script>
+	<script type="text/javascript" language="javascript" charset="_charset" src="/js/bootstrap.min.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>INDIVILISTER : Edit an Project</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/css/custom.css" charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+	<main>
+		<!-- START Navigation bar -->
+		<h2 id="head">ระบบจองห้องประชุม</h2>
+		<div class="w3-bar w3-light-grey">
+			<a href="/branch/" class="w3-bar-item w3-button">Home</a>
+			<div class="w3-dropdown-hover">
+				<button class="w3-button">สาขา</button>
+				<div class="w3-dropdown-content w3-bar-block w3-card-4">
+					<div th:each="branch, stat : ${branchList}">
+						<a th:href="'/room/list/' + ${branch.branchID}" class="btn">
+							<span th:text="${branch.branchName}">branch</span>
+							<!-- <span class="badge" th:text="${branchRemainingRoomMap.get(branch.branchID)} + '/' + ${branch.roomList.size()}">1/2</span> -->
+						</a>
+						<a th:href="'/branch/edit/' + ${branch.branchID}">Edit</a>
+						<a th:href="'/branch/delete/' + ${branch.branchID}"
+							onclick="return confirm('Delete this project?');">Delete</a>
+					</div>
+				</div>
+			</div>
+			<a href="#" class="w3-bar-item w3-button w3-right">Sign Up</a>
+			<a href="#" class="w3-bar-item w3-button w3-right">Login</a>
+		</div>
+		<!-- END Navigation bar -->
+		
+		<!-- START Header -->	
+		<!-- END Header -->
+		
+		<!-- START Content -->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="box effect1">
+						<h4>Edit Branch</h4>
+						<form th:action="@{/branch/edit}" method="POST" th:object="${branchForm}" accept-charset="utf-8" enctype="application/x-www-formurlencoded" class="form-horizontal">
+							<input type="hidden" name="authenticityToken" value="e739540dfb2b4389d499e26e8b6dc17f665de703">
+							<input type="text" th:field="*{branchID}" hidden="">
+							<div class="form-group">
+								<label for="branchName" class="col-lg-2 control-label">Branch name:</label>
+								<div class="col-lg-10">
+									<input class="form-control" th:field="*{branchName}" id="branchName" type="text" name="branchName" required="">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-offset-2 col-lg-10">
+									<button type="submit" class="btn btn-success">Edit</button>
+									<button type="reset" class="btn btn-danger">Reset</button>
+									<a th:href="@{/branch}" class="btn btn-primary">Back to Home</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END Content -->
+		<div class="push"></div>
+	</main>
+		<!-- START Footer -->
+		<span th:include="common/footer :: footer"></span>
+		<!-- START Footer -->
+		<script type="text/javascript" language="javascript" charset="_charset" src="/js/jquery-1.12.2.min.js"></script>
+		<script type="text/javascript" language="javascript" charset="_charset" src="/js/bootstrap.min.js"></script>
+</body>
+</html>		
+						

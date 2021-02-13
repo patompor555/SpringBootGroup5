@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Project Schedule</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/css/custom.css" charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<style>
+	#head {
+		font-size: 35px;
+		padding: 15px 0px 2px 25px;
+	}
+	.Content {
+		text-align: center;
+	}
+	.container1{
+		padding-left: 165px;
+	}
+	.w3-bar{
+		padding: 0px 15px;
+	}
+	#selectR{
+		padding: 40px 0px 10px 150px;
+	}
+	.table-responsive{
+		font-size: 20px;
+	}
+	.table-task{
+		width: 80%;
+		padding: 20px 0px;
+	}
+	.newlist{
+		padding: 0px;
+	}
+	.control-label{
+		padding: 0px;
+	}
+	
+</style>
+
+<body>
+	<main>
+		<!-- START Navigation bar -->
+		<!--  <nav th:include="common/nav :: nav"></nav> -->
+		<h2 id="head">ระบบจองห้องประชุม</h2>
+		<div class="w3-bar w3-light-grey">
+			<a th:href="@{/branch/home}" class="w3-bar-item w3-button">Home</a>
+			<a th:href="@{/user/login?form}" class="w3-bar-item w3-button w3-right">Logout</a>
+		</div>
+		<!-- END Navigation bar -->
+		<!-- START Header -->
+		<div class="header-custom">
+			<div class="container">
+				<h2 id="selectR">รายการจองห้องประชุม</h2>
+				<p></p>
+			</div>
+		</div>
+		<!-- END Header -->
+
+		<!-- START Content -->
+		<div class="container container1">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box effect1">
+						<h4 th:text="'รายการทั้งหมดของห้อง ' + ${room.roomName}">รายการทั้งหมดของห้อง xxxx</h4>
+						<div class="table-responsive table-task">
+							<table class="table">
+								<tbody>
+									<tr th:each="schedule, stat : ${room.scheduleList}">
+										<td class="col-lg-12" >
+											<a th:text="'จองวันที่' +${schedule.date} + '&nbsp;&nbsp;&nbsp;เวลา:' + ${schedule.time_start} + 'ถึง' + ${schedule.time_end} + '&nbsp;&nbsp;&nbsp;จองโดย:&nbsp;' + ${schedule.reservationer}" ></a>
+											<br>
+											<a th:text="'รายละเอียด:&nbsp;' + ${schedule.detail}"></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box effect1">
+						<h4 th:text="'เพิ่มรายการใหม่ของห้อง ' + ${room.roomName}">เพิ่มรายการใหม่ของห้อง room</h4>
+						<form th:action="@{/schedule/create}" th:object="${scheduleForm}" method="POST" accept-charset="utf-8"
+							enctype="application/xwww-form-urlencoded" class="form-horizontal">
+							<input type="hidden" name="authenticityToken"
+								value="e739540dfb2b4389d499e26e8b6dc17f665de703">
+							<input type="hidden" id="room-id" th:field="*{roomID}">
+							
+							<div class="form-group table-task">
+								<label for="newList" class="col-lg-2 control-label">Date:</label>
+								<div class="col-lg-12 newlist">
+									<input class="form-control" th:field="*{date}" id="date" type="date" name="date">
+								</div>
+							</div>
+							<div class="form-group table-task">
+								<label for="newList" class="col-lg-2 control-label">เวลา เริ่ม-สิ้นสุด:</label>
+								<div class="col-lg-12 newlist">
+									<!-- <input class="form-control" th:field="*{time_start}" id="time_start" type="text"
+										name="time_start"> -->
+										 <input class="form-control" th:field="*{time_start}" id="time_start" type="time" name="time_start">
+								</div>
+								<div class="col-lg-12 newlist">
+									<!--  <input class="form-control" th:field="*{time_end}" id="time_end" type="text"
+										name="time_end"> -->
+									<input class="form-control" th:field="*{time_end}" id="time_end" type="time" name="time_end">
+								</div>
+							</div>
+							<div class="form-group table-task">
+								<label for="newList" class="col-lg-2 control-label">รายละเอียด:</label>
+								<div class="col-lg-12 newlist">
+									<input class="form-control" th:field="*{detail}" id="detail" type="text"
+										name="detail">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-lg-offset-2 col-lg-10">
+									<button type="submit" class="btn btn-success">Create a new list</button>
+									<button type="reset" class="btn btn-danger">Reset</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END Content -->
+		<div class="push"></div>
+	</main>
+	<!-- START Footer -->
+	<!-- START Footer -->
+	<script type="text/javascript" language="javascript" charset="_charset" src="/js/jquery-1.12.2.min.js"></script>
+	<script type="text/javascript" language="javascript" charset="_charset" src="/js/bootstrap.min.js"></script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.room-status').on('click', function () {
+				var status = $(this).prop('checked');
+				window.location.href = '/room/edit/' + $(this).attr('data') + '/' + status
+			});
+		});
+	</script>
+</body>
+
+</html>

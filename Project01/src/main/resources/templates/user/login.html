@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/css/custom.css" charset="utf-8">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+    .inputtask {
+        padding: 11px;
+        font-size: 17px;
+        line-height: 16px;
+        border-radius: 5px;
+        border-color: white;
+    }
+
+    .pad {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        border: none;
+        font-size: 20px;
+       
+        height: 36px;
+
+    }
+    .pad1{
+        padding: 5px 0px;
+    }
+
+    </style>
+</head>
+<body>
+  
+   <center style="position: relative; top: 200px;">
+   
+		<div style="background-color: #f1f1f1!important; width: 400px; height: auto ; border-radius:30px; padding: 10px 16px 10px 16px;">
+			<h1 style="color: #000; font-size: 30px; padding: 10px 0px;">เข้าสู่ระบบ</h1>
+			<form class="container" th:action="@{/user/log_in}" method="GET">
+        		<div class="mb-3">
+            		<input class="form-control" id="email" type="email" name="email" required="" placeholder="อีเมล์" style="width: 344px">
+        		</div>
+        		<div class="mb-3">
+            		<input class="form-control" id="password" type="password" name="password" required="" placeholder="รหัสผ่าน" style="width: 344px">
+        		</div>
+        		<br>
+				<button type="submit" class="btn btn-primary" style="font-size: 1.2rem; background-color: #0b5ed7; color: #fff;  width: 130px;">ยืนยัน</button>
+       			<div style=" margin-top: 10px; margin-bottom: 10px;">
+       				<hr>
+        			<p>
+						<a th:href="@{/user/singup?form}" style="font-size: 1.2rem; color: #36a420;  width: 145px;">สมัคร</a>
+        			</p>
+        		</div>
+    		</form>
+		</div>
+		
+	</center>
+	
+</body>
+    <script type="text/javascript" language="javascript" charset="_charset" src="/js/jquery-1.12.2.min.js"></script>
+	<script type="text/javascript" language="javascript" charset="_charset" src="/js/bootstrap.min.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>
